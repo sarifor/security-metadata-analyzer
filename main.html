@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Security Metadata AI Demo</title>
+</head>
+<body>
+  <h3>Security Camera Metadata Analysis Demo</h3>
+  <p>4日分のメタデータを基にした調査優先時間帯の抽出</p>
+
+  <button onclick="loadMetadata()">メタデータを読み込む</button>
+  <button onclick="analyze()">AIによる分析</button>
+
+  <h4>メタデータ</h4>
+  <pre id="metadata">未表示</pre>
+
+  <h4>AI分析結果</h4>
+  <pre id="result">未表示</pre>
+
+  <script>
+    let metadataFromSdk = null;
+
+    // サーバーから擬似メタデータを取得
+    async function loadMetadata() {
+      const response = await fetch("http://localhost:3000/metadata");
+      metadataFromSdk = await response.json();
+      document.getElementById("metadata").innerText =
+        JSON.stringify(metadataFromSdk, null, 2);
+    }
+
+    // サーバーに分析をリクエスト
+    async function analyze() {
+      if (!metadataFromSdk) {
+        alert("先にメタデータを読み込んでください。");
+        return;
+      }
+
+      const response = await fetch("http://localhost:3000/analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(metadataFromSdk)
+      });
+
+      const data = await response.json();
+      document.getElementById("result").innerText =
+        data.text || "AIからの応答を取得できませんでした。";
+    }
+  </script>
+</body>
+</html>

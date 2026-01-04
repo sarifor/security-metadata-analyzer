@@ -1,0 +1,16 @@
+{
+  "name": "security-metadata-analyzer",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sarifor",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@google/genai": "^1.34.0",
+    "express": "^5.2.1"
+  }
+}
