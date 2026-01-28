@@ -46,7 +46,6 @@
 ### フロントエンド
 - HTML
 - JavaScript
-- Live Server（VSC Extension）
 
 ### バックエンド
 - Node.js v20.18.3
@@ -60,7 +59,6 @@
 
 ### 前提条件
 - Node.jsがインストールされていること
-- VS CodeおよびLive Server Extensionがインストールされていること
 
 ### インストール
 ```bash
@@ -79,4 +77,5 @@ export const GEMINI_API_KEY = "YOUR_API_KEY";
 node server.js
 ```
 - クライアント</br>
-VS Code 画面の右下の「Go Live」をクリックし、ブラウザで main.html を開いてください。
+Webブラウザで main.html を直接開いてください。</br>
+※サーバー側で `Access-Control-Allow-Origin: *` を設定しているため、Live Server なしでも CORS エラーは発生しません。
